@@ -4,7 +4,8 @@ const bcrypt = require("bcrypt"); // this is for login in login form
 
 module.exports = {
   create,
-  login
+  login,
+  checkToken
 };
 
 // this function is auto filled by copilot
@@ -72,4 +73,11 @@ function createJWT(user) {
     process.env.SECRET,
     { expiresIn: "24h" }
   );
+}
+
+// checkToken function
+function checkToken(req, res) {
+  // req.user will always be there for you when a token is sent
+  console.log('req.user', req.user);
+  res.json(req.exp);
 }
